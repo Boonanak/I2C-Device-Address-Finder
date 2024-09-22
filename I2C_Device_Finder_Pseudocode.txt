@@ -1,0 +1,28 @@
+Include necessary libraries
+
+void setup
+	Define variable, error, of byte type
+	Define variable, address, of byte type
+	init nDevices variable to 0
+
+	Print "Scanning..." to the serial monitor
+
+	For each 'address' starting from 1 to 126 (inclusive):
+    		Begin I2C communication with the device at the current 'address'
+    		Send a transmission to the I2C device
+    		Store the result of the transmission in 'error'
+
+    		IF 'error' is 0 (no error, device found):
+        		Print the message "I2C device found at address 0x" to the Serial monitor
+        		IF 'address' is less than 16:
+           			Print an additional "0" to format the address as a two-character hexadecimal
+        			Print the 'address' in hexadecimal format to the Serial monitor
+        			Print "!" to the Serial monitor
+        			Increment the variable 'nDevices' by 1 (to count the found devices)
+
+	IF no devices were found (nDevices is 0):
+    		Print "No I2C devices found\n" to the Serial monitor
+	ELSE:
+    		Print "done" to the Serial monitor
+
+	Wait for 5 seconds (5000 milliseconds) before the next scan
